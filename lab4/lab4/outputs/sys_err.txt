@@ -1,0 +1,37 @@
+GUM> go a3000000
+## Starting application at 0xA3000000 ...
+TEST BEGIN!
+
+1. Test create return EINVAL
+        SUCCESS ****************
+
+2. Test create return EFAULT
+        SUCCESS ****************
+
+3. Mutex Create returns ENOMEM
+        SUCCESS ****************
+
+4. Mutex Unlock return EINVAL
+        SUCCESS ****************
+
+5. Mutex Unlock return EPERM
+        SUCCESS ****************
+
+6. Mutex Lock return EINVAL
+        SUCCESS ****************
+
+7. Mutex Lock return success
+        SUCCESS ****************
+
+8. Mutex Lock return EDEADLOCK
+        SUCCESS ****************
+
+9. Mutex Unlock return success
+        SUCCESS ****************
+
+10. Event Wait return EINVAL
+        SUCCESS ****************
+
+TEST END!
+
+

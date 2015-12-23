@@ -1,0 +1,106 @@
+Satvik Dhandhania	sdhandha@andrew.cmu.edu
+
+PART 2
+
+part2asm
+Optimize strTable
+
+I reduced the registers required in the function as many of them were redundant. This reduced the overhead of saving registers. Instead of copying the length of the string to a register I directly used it for comparisons.Also, if variables were unused in the remaining part of the loop I used it for other purposes as per need. Further, I turned all loops to count-down loops to avoid the cmp statements at the end of each cycle and directly use branch if value reaches 0. This increases efficiency as comparisons take in two values and this simply checks the zero flag. We add ’s’ to required data processing instructions so that flags are updated simultaneously. There is a redundancy in storing the character to the src string. Both characters are loaded and compared. The dst character was already loaded before so instead we can keep a copy of it and store it in a variable instead of reloading it. Also, it is comparing the two characters and if not equal copies the character from from dst to src at the position pointed by ip. Comparing is of no use, We can directly copy from dst to src if the control reaches here, cause if it is equal then it would not change the src string, if it is not equal, it anyway had to be changed. Finally in the last segment again I made it a count down loop to reduce the cmp instruction cost. 
+
+SOLUTION 1
+strTable.s (loop unrolled)
+ASSUMING DST STRING IS ALWAYS A CAPITAL ALPHABET i.e. ‘A’(65) to ‘Z’(90). Thus we need to subtract 23 for maximum of 3 times to get in the range of 0-22. 
+Thus we use subpls  ip, ip, #23(loop unrolling with conditional subtractions- condition-> subtract if value is positive) & addmis  ip, ip, #23(If it is negative make it back to a value in the range).
+
+
+SOLUTION 2
+strTable2.s
+ASSUMING DST STRING CAN BE ANYTHING. Here it would be better if we keep the original loop. But we can improve this loop by merging the previous few statements along with it as they are repeated. The solution is in the zip as strTable2.s with the following changes to the original code. 
+
+.L9:
+	sub 	r6, r3, r3, LSL #1
+	ldrb	ip, [r1, r6]	@ zero_extendqisi2
+	mov 	r6, ip
+.L7:
+	sub	ip, ip, #23
+	cmp	ip, #22
+	bgt	.L7
+.L13:
+
+COST OF THIS FUNCTION 
+
+strTable.s 	Instructions-18		Branches-17	Load Stores-18	Normal operations- 67	Total Cost - (18x5)+(17x3)+(18x3)+(67x1) = 90+51+54+67= 262 (This includes no-ops, many instructions do not execute due to failing conditions and they have been counted here)
+
+strTable2.s 	Instructions-17		Branches-41	Load Stores-18	Normal operations- 51	Total Cost - (17x5)+(41x3)+(18x3)+(51x1) = 85+123+54+51= 313 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+part2c
+Optimize 
+
+Optimization1 
+
+We first convert the loop to a down count loop as it is more efficient. Secondly, if the duplicate element is found we can break the inner loop as searching more is of no use. Thirdly, if we have found our non duplicate element we end the outer loop also as our task is accomplished. Instead of storing the result in a separate variable we can directly return the array element as soon as it is found.
+Thus we are able to end the outer loop and return our value without taking more space or computation time. The solution provided is of o(n^2) time complexity. We can reduce this drastically by changing our algorithm.
+
+Optimization2
+
+Here we have simply XOR’ed all the elements together. The odd element will be the result of the XOR operator. The complexity of this function is o(n) and is requires far less variables than the provided code. 
+
+Optimization Alternate solution. 
+
+Since the majority of the operation are within o(n) time range the complexity of this method is o(n), While loop does not make the method go to the o(n^2) range as it only executes twice.
+Therefore o(2n+n+n) = 0(n)
+
+*The algorithm for this solution is to arrange elements in the array according to their values by storing the value at the same index as the value.This is accomplished by swapping. Since elements are in the range 1 to n. If we keep mapping we will find duplicates easily. 
+*Here as soon as we find a duplicate we make both the values zero. We repeat this outer loop two times since swapping may sometimes place elements in odd positions which can be exploited using corner cases.
+* A second loop is used to finally check and remove duplicates that got swapped out of the 1 to n range for indexes (i.e. in the n+1 to len-1 positions)
+*Finally we check for the non zero element in the index range to get our non duplicate element and return it to the user. If not found we return 0 to indicate an error in input. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

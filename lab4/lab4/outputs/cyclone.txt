@@ -1,0 +1,48 @@
+Hit any key to stop autoboot:  0 
+GUM> mmcinit
+Detected: 1600000 blocks of 512 bytes (781MB) SD card.
+Vendor: Man aa OEM XY "QEMU!" Date 02/2006
+Product: 3735928559
+Revision: 0.1
+GUM> fatload mmc 0 a3000000 kernel.bin
+reading kernel.bin
+
+5736 bytes read
+GUM> fatload mmc 0 a0000000 cyclone.bin
+reading cyclone.bin
+
+8080 bytes read
+GUM> go a3000000
+## Starting application at 0xA3000000 ...
+Test begin
+Time now is 10
+Time now is 30
+Time now is 60
+Time now is 100
+Time now is 150
+Time now is 210
+Time now is 280
+Time now is 360
+Time now is 450
+Time now is 550
+Time now is 660
+Time now is 780
+Time now is 910
+Time now is 1050
+Time now is 1200
+Time now is 1360
+Time now is 1530
+Time now is 1710
+Time now is 1900
+Time now is 2100
+Time now is 2310
+Time now is 2530
+Time now is 2760
+Time now is 3000
+Time now is 3250
+Time now is 3510
+Time now is 3780
+Time now is 4060
+Time now is 4350
+Time now is 4650
+Test ends!!

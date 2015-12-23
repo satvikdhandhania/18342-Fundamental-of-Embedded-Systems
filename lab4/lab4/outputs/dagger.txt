@@ -1,0 +1,17 @@
+GUM> mmcinit
+Detected: 1600000 blocks of 512 bytes (781MB) SD card.
+Vendor: Man aa OEM XY "QEMU!" Date 02/2006
+Product: 3735928559
+Revision: 0.1
+GUM> fatload mmc 0 a3000000 kernel.bin
+reading kernel.bin
+
+5736 bytes read
+GUM> fatload mmc 0 a0000000 dagger.bin
+reading dagger.bin
+
+541 bytes read
+GUM> go a3000000
+## Starting application at 0xA3000000 ...
+@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@@<@
+

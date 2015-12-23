@@ -1,0 +1,4 @@
+GUM> go a3000000
+## Starting application at 0xA3000000 ...
+succeSs!
+

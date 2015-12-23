@@ -1,0 +1,14 @@
+/home/satvik/Desktop/lab4/tasks/hello/hello.o:  \
+ /home/satvik/Desktop/lab4/tasks/hello/hello.c \
+  /home/satvik/Desktop/lab4/tasks/libc/include/unistd.h \
+  /home/satvik/Desktop/lab4/tasks/libc/include/bits/fileno.h \
+  /home/satvik/Desktop/lab4/tasks/libc/include/sys/types.h \
+  /home/satvik/Desktop/lab4/tasks/libc/include/bits/types.h
+
+/home/satvik/Desktop/lab4/tasks/libc/include/unistd.h:
+
+/home/satvik/Desktop/lab4/tasks/libc/include/bits/fileno.h:
+
+/home/satvik/Desktop/lab4/tasks/libc/include/sys/types.h:
+
+/home/satvik/Desktop/lab4/tasks/libc/include/bits/types.h:

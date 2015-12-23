@@ -1,0 +1,17 @@
+< Satvik Dhandhania  andrew id: sdhandha@andrew.cmu.edu>
+
+1. Entry point address:  Using realelf -a we get the entry point address in the beginning as   0x82ac.
+
+2. __libc_start_main@@GLIBC_
+ 
+3. The major difference between objdump -d and objdump -D is that objdump -d displays just the mnemonics for the machine instructions
+from objfile. This only dissembles the section that are expected to contain instructions. The objdump -D dissembles all the sections instead of just the instruction sections. This in ARM architecture  has the effect of forcing the disassembler to decode pieces of data in the code section as if they were instructions.
+
+4. The read only data (.rodata) contains the constants present in the program. 
+      word   0x00-02-00-01		 'nul','STX','nul','SOH'
+      word   0x6c-6c-65-48               'l','l','e','H'
+      word   0x6f-77-20-6f               'o','w',' ','o'  
+      word   0x21-64-6c-72               '!','d','l','r'               
+      word   0x00-00-00-00 
+Yes, the interpretation is correct as the values of the constant string "Hello world!" is stored in it. The first register displays the starting of header and starting of text. Next the registers contain the value of "Hello world!" in little endian format. We can check this by decoding the register values and compare the ascii values of the individual characters. 
+
